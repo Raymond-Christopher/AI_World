@@ -23,6 +23,7 @@ class Country:
             :param outputs: A dictionary of resources to produce and their amounts.
             :raises ValueError: If the country lacks the required input resources.
     """
+
     def __init__(self, name: str, resources: dict):
         self.name = name
         self.resources = resources
@@ -81,7 +82,7 @@ class World:
             :type resource_list: list[tuple[str, int]]
             :raises ValueError: If sender or receiver is not found, or if sender lacks resources.
     """
-    
+
     def __init__(self, countries: list):
         self.countries = {c.name: c for c in countries}
 

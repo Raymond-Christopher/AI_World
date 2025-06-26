@@ -6,6 +6,7 @@ from transformations import TransformTemplate
 from schedule_evaluation import compute_undiscounted_reward, compute_discounted_reward
 import copy
 
+
 def main():
     # Initialize resources
     atlantis_resources = {
@@ -14,7 +15,7 @@ def main():
         "HousingWaste": 3,
         "Electronics": 10,
         "ElectronicsWaste": 1,
-        "MetallicAlloys":15,
+        "MetallicAlloys": 15,
         "MetallicAlloysWaste": 2,
         "Timber": 40,
         "MetallicElements": 30,
@@ -54,22 +55,12 @@ def main():
 
     atlantis_before = copy.deepcopy(atlantis)
 
-
     # Transform
     print("\n--- Attempting Housing Transform ---")
     housing_transform = TransformTemplate(
         name="Housing",
-        inputs={
-            "Population": 5,
-            "MetallicElements": 1,
-            "Timber": 5,
-            "MetallicAlloys": 3
-        },
-        outputs={
-            "Housing": 1,
-            "HousingWaste": 1,
-            "Population": 5  
-        }
+        inputs={"Population": 5, "MetallicElements": 1, "Timber": 5, "MetallicAlloys": 3},
+        outputs={"Housing": 1, "HousingWaste": 1, "Population": 5},
     )
 
     scaled_transform = housing_transform.scale(3)

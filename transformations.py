@@ -1,5 +1,6 @@
 class TransformTemplate:
     """Represents a transformation operation template with inputs and outputs."""
+
     def __init__(self, name: str, inputs: dict, outputs: dict):
         self.name = name
         self.inputs = inputs

@@ -10,7 +10,7 @@ def compute_state_quality(country_resources):
     :return: float
         The computed state quality score per capita. Returns negative infinity if population is zero.
     """
-    
+
     weights = {
         "Housing": 3.0,
         "HousingWaste": -2.0,

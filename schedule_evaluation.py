@@ -1,5 +1,6 @@
 from state_quality import compute_state_quality
 
+
 def compute_undiscounted_reward(country_before, country_after) -> float:
     """
     Computes the difference in state quality between two country states.
@@ -10,6 +11,7 @@ def compute_undiscounted_reward(country_before, country_after) -> float:
     q_start = compute_state_quality(country_before.resources)
     q_end = compute_state_quality(country_after.resources)
     return q_end - q_start
+
 
 def compute_discounted_reward(start_country, end_country, steps: int, gamma: float = 0.95) -> float:
     """
@@ -26,4 +28,4 @@ def compute_discounted_reward(start_country, end_country, steps: int, gamma: flo
 
     q_start = compute_state_quality(start_country.resources)
     q_end = compute_state_quality(end_country.resources)
-    return (gamma ** steps) * (q_end - q_start)
+    return (gamma**steps) * (q_end - q_start)
