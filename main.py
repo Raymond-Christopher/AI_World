@@ -1,11 +1,13 @@
 """Main script to test state quality and simulate operations."""
 
 import copy
-from state_quality import compute_state_quality
-from world_model import Country, World
-from transformations import TransformTemplate
-from schedule_evaluation import compute_undiscounted_reward  # pylint: disable=unused-import
-from schedule_evaluation import compute_discounted_reward
+from evaluations.state_quality import compute_state_quality
+from models.world_model import Country, World
+from transformations.transformations import TransformTemplate
+from evaluations.schedule_evaluation import (
+    compute_undiscounted_reward,
+)  # pylint: disable=unused-import
+from evaluations.schedule_evaluation import compute_discounted_reward
 
 
 def main():

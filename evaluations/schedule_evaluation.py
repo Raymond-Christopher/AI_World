@@ -1,7 +1,7 @@
 """Functions to compute undiscounted and discounted rewards based on state
 quality."""
 
-from state_quality import compute_state_quality
+from .state_quality import compute_state_quality
 
 
 def compute_undiscounted_reward(country_before, country_after) -> float:

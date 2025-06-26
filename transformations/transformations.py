@@ -25,8 +25,7 @@ class TransformTemplate:
     """
 
     def __init__(self, name: str, inputs: dict, outputs: dict):
-        """
-        Initialize a TransformTemplate.
+        """Initialize a TransformTemplate.
 
         Args:
             name (str): The name of the transformation.
@@ -38,8 +37,8 @@ class TransformTemplate:
         self.outputs = outputs
 
     def scale(self, factor: int):
-        """
-        Return a new TransformTemplate with all input and output quantities scaled by the given factor.
+        """Return a new TransformTemplate with all input and output quantities
+        scaled by the given factor.
 
         Args:
             factor (int): The multiplier to apply to all inputs and outputs.
