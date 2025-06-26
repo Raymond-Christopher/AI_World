@@ -63,6 +63,7 @@ Development_mode/
 ```bash
 cd Development_mode
 python3 main.py
+```
 
 This will:
 
@@ -70,7 +71,6 @@ Print the initial state quality for each country.
 Perform a resource transfer from one country to another.
 Attempt a resource transformation (e.g., Housing).
 Print the post-transform state and the computed discounted reward.
-```
 
 ### Testing
 
