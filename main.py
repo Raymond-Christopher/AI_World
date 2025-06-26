@@ -5,44 +5,50 @@ import copy
 from evaluations.state_quality import compute_state_quality
 from models.world_model import Country, World
 from transformations.transformations import TransformTemplate
-from evaluations.schedule_evaluation import (compute_discounted_reward, compute_undiscounted_reward)
+from evaluations.schedule_evaluation import compute_discounted_reward, compute_undiscounted_reward
+from parsers.csv_parser import parse_country_resources, parse_resource_weights
 
 
 def main():
     """Run a simulation of state quality and resource transformation between
     countries."""
-    atlantis_resources = {
-        "Population": 100,
-        "Housing": 20,
-        "HousingWaste": 3,
-        "Electronics": 10,
-        "ElectronicsWaste": 1,
-        "MetallicAlloys": 15,
-        "MetallicAlloysWaste": 2,
-        "Timber": 40,
-        "MetallicElements": 30,
-        "Food": 60,
-        "Water": 80,
-        "FoodWaste": 4,
-    }
+    # atlantis_resources = {
+    #     "Population": 100,
+    #     "Housing": 20,
+    #     "HousingWaste": 3,
+    #     "Electronics": 10,
+    #     "ElectronicsWaste": 1,
+    #     "MetallicAlloys": 15,
+    #     "MetallicAlloysWaste": 2,
+    #     "Timber": 40,
+    #     "MetallicElements": 30,
+    #     "Food": 60,
+    #     "Water": 80,
+    #     "FoodWaste": 4,
+    # }
 
-    carpania_resources = {
-        "Population": 80,
-        "Housing": 15,
-        "HousingWaste": 2,
-        "Electronics": 8,
-        "ElectronicsWaste": 1,
-        "MetallicAlloys": 3,
-        "MetallicAlloysWaste": 1,
-        "Timber": 20,
-        "MetallicElements": 15,
-        "Food": 40,
-        "Water": 60,
-        "FoodWaste": 3,
-    }
+    # carpania_resources = {
+    #     "Population": 80,
+    #     "Housing": 15,
+    #     "HousingWaste": 2,
+    #     "Electronics": 8,
+    #     "ElectronicsWaste": 1,
+    #     "MetallicAlloys": 3,
+    #     "MetallicAlloysWaste": 1,
+    #     "Timber": 20,
+    #     "MetallicElements": 15,
+    #     "Food": 40,
+    #     "Water": 60,
+    #     "FoodWaste": 3,
+    # }
 
-    atlantis = Country("Atlantis", atlantis_resources)
-    carpania = Country("Carpania", carpania_resources)
+    countries_data = parse_country_resources("data/resources.csv")
+    weights_data = parse_resource_weights("data/weights.csv")
+    atlantis = Country("Atlantis", countries_data["Atlantis"])
+    carpania = Country("Carpania", countries_data["Carpania"])
+
+    # atlantis = Country("Atlantis", atlantis_resources)
+    # carpania = Country("Carpania", carpania_resources)
     world = World([atlantis, carpania])
 
     # Initial state quality
@@ -78,7 +84,7 @@ def main():
     for country in world.all_countries():
         score = compute_state_quality(country.resources)
         print(f"{country.name}: {score:.2f}")
-    _ =compute_undiscounted_reward
+
 
 if __name__ == "__main__":
     main()

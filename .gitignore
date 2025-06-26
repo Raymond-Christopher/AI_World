@@ -1,3 +1,42 @@
-.DS_Store
+# Byte-compiled / cache
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# VS Code settings
+.vscode/
+
+# pytest
+.pytest_cache/
+.cache/
+*.log
+
+# Test/coverage artifacts
+htmlcov/
+coverage.xml
+*.cover
+*.coverage
+*.pytest_cache/
+
+# Environment files
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# MacOS
+.DS_Store
+
+# Jupyter Notebook checkpoint files
+.ipynb_checkpoints/
+
+# MyPy and other type checkers
+.mypy_cache/
+
+# Optional: build artifacts
+build/
+dist/
+*.egg-info/

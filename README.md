@@ -56,7 +56,10 @@ Development_mode/
 ### Pre-requisites
 
 - Python 3.8+
-- No third-party dependencies (standard library only)
+
+```
+pip install pytest
+```
 
 ### Running the Simulation
 
@@ -78,7 +81,7 @@ To run unit tests:
 
 ```bash
 cd Development_mode
-python3 -m unittest discover tests
+pytest -v
 ```
 
 ### Notes
