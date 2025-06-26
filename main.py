@@ -1,6 +1,8 @@
-# main.py
+"""Main script to test state quality and simulate operations."""
+
 from state_quality import compute_state_quality
 from world_model import Country, World
+
 
 def main():
     atlantis_resources = {
@@ -15,7 +17,7 @@ def main():
         "MetallicElements": 30,
         "Food": 60,
         "Water": 80,
-        "FoodWaste": 4
+        "FoodWaste": 4,
     }
 
     atlantis = Country("Atlantis", atlantis_resources)
@@ -31,7 +33,7 @@ def main():
         "MetallicElements": 15,
         "Food": 40,
         "Water": 60,
-        "FoodWaste": 3
+        "FoodWaste": 3,
     }
     carpania = Country("Carpania", carpania_resources)
 
@@ -49,6 +51,6 @@ def main():
         score = compute_state_quality(country.resources)
         print(f"{country.name}: {score:.2f}")
 
+
 if __name__ == "__main__":
     main()
-

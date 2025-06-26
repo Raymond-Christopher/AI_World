@@ -10,7 +10,7 @@ def compute_state_quality(country_resources):
         "MetallicElements": 1.5,
         "Food": 3.0,
         "Water": 2.0,
-        "FoodWaste": -1.5
+        "FoodWaste": -1.5,
     }
 
     population = country_resources.get("Population", 0)
