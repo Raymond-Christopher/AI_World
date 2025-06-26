@@ -11,7 +11,8 @@ from schedule_evaluation import (
 
 
 def main():
-    """Run a simulation of state quality and resource transformation between countries."""
+    """Run a simulation of state quality and resource transformation between
+    countries."""
     atlantis_resources = {
         "Population": 100,
         "Housing": 20,

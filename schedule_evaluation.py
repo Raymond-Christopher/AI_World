@@ -1,11 +1,13 @@
-"""Functions to compute undiscounted and discounted rewards based on state quality."""
+"""Functions to compute undiscounted and discounted rewards based on state
+quality."""
 
 from state_quality import compute_state_quality
 
+
 def compute_undiscounted_reward(country_before, country_after) -> float:
-    """
-    Computes the difference in state quality between two country states.
+    """Computes the difference in state quality between two country states.
     :param country_before: A Country object (before schedule)
+
     :param country_after: A Country object (after schedule)
     :return: float representing Q_end - Q_start
     """
@@ -15,8 +17,9 @@ def compute_undiscounted_reward(country_before, country_after) -> float:
 
 
 def compute_discounted_reward(start_country, end_country, steps: int, gamma: float = 0.95) -> float:
-    """
-    Calculates the discounted reward between two countries' resource states over a given number of steps.
+    """Calculates the discounted reward between two countries' resource states
+    over a given number of steps.
+
     This function computes the difference in state quality between the starting and ending countries,
     discounted by a factor gamma raised to the power of the number of steps. The state quality is
     determined by the `compute_state_quality` function applied to each country's resources.

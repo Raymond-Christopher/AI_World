@@ -1,21 +1,25 @@
 class TransformTemplate:
-    """
-    TransformTemplate represents a template for data transformations, encapsulating a name, input mappings, and output mappings.
-    This class allows for the scaling of input and output values by a given factor, producing a new TransformTemplate instance with the scaled values.
+    """TransformTemplate represents a template for data transformations,
+    encapsulating a name, input mappings, and output mappings.
+
+    This class allows for the scaling of input and output values by a
+    given factor, producing a new TransformTemplate instance with the
+    scaled values.
     :param name: The name of the transformation template.
     :type name: str
     :param inputs: A dictionary mapping input names to their values.
     :type inputs: dict
     :param outputs: A dictionary mapping output names to their values.
-    :type outputs: dict
-    :method scale:
-        Scales all input and output values by the specified factor.
-        :param factor: The factor by which to scale the input and output values.
-        :type factor: int
-        :return: A new TransformTemplate instance with scaled inputs and outputs.
-        :rtype: TransformTemplate
+    :type outputs: dict :method scale: Scales all input and output
+        values by the specified factor.
+    :param factor: The factor by which to scale the input and output
+        values.
+    :type factor: int
+    :return: A new TransformTemplate instance with scaled inputs and
+        outputs.
+    :rtype: TransformTemplate
     """
-    
+
     def __init__(self, name: str, inputs: dict, outputs: dict):
         self.name = name
         self.inputs = inputs

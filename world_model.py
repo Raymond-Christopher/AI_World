@@ -1,6 +1,6 @@
 class Country:
-    """
-    Represents a country with a set of resources and provides methods to query and modify them.
+    """Represents a country with a set of resources and provides methods to
+    query and modify them.
 
     Attributes:
         name (str): The name of the country.
