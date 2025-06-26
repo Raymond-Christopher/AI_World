@@ -41,6 +41,14 @@ def main():
         score = compute_state_quality(country.resources)
         print(f"State quality for {country.name}: {score:.2f}")
 
+    transfer_items = [("Timber", 30), ("Food", 5), ("Water", 15)]
+    world.transfer_resources("Atlantis", "Carpania", transfer_items)
+
+    print("\n--- After Transfer ---")
+    for country in world.all_countries():
+        score = compute_state_quality(country.resources)
+        print(f"{country.name}: {score:.2f}")
+
 if __name__ == "__main__":
     main()
 
