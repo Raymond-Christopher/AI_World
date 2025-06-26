@@ -1,3 +1,7 @@
+"""Defines the TransformTemplate class used for modeling scalable resource
+transformations."""
+
+
 class TransformTemplate:
     """TransformTemplate represents a template for data transformations,
     encapsulating a name, input mappings, and output mappings.
@@ -31,4 +35,5 @@ class TransformTemplate:
         return TransformTemplate(self.name, scaled_inputs, scaled_outputs)
 
     def __repr__(self):
+        """Return a string representation of the TransformTemplate."""
         return f"<TransformTemplate name={self.name}>"

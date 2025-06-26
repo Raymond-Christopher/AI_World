@@ -1,3 +1,7 @@
+"""Defines the Country and World classes for simulating resource management and
+transfers."""
+
+
 class Country:
     """Represents a country with a set of resources and provides methods to
     query and modify them.
@@ -25,16 +29,40 @@ class Country:
     """
 
     def __init__(self, name: str, resources: dict):
+        """Initialize a Country with a name and resource dictionary.
+
+        :param name: The country's name.
+        :param resources: A dictionary of resource names to quantities.
+        """
         self.name = name
         self.resources = resources
 
     def get_resource(self, resource: str) -> int:
+        """Get the quantity of a specific resource.
+
+        :param resource: The name of the resource to query.
+        :return: Quantity of the resource, or 0 if not present.
+        """
         return self.resources.get(resource, 0)
 
     def has_resources(self, required: dict) -> bool:
+        """Check if the country has at least the required amounts of each
+        resource.
+
+        :param required: A dictionary of required resources and amounts.
+        :return: True if all are available, False otherwise.
+        """
+
         return all(self.resources.get(k, 0) >= v for k, v in required.items())
 
     def apply_transform(self, inputs: dict, outputs: dict):
+        """Apply a transformation by consuming inputs and producing outputs.
+
+        :param inputs: Dictionary of resource inputs to consume.
+        :param outputs: Dictionary of resource outputs to produce.
+        :raises ValueError: If the country lacks the required input
+            resources.
+        """
         if not self.has_resources(inputs):
             raise ValueError(f"{self.name} lacks required resources: {inputs}")
         for r, amt in inputs.items():
@@ -84,20 +112,41 @@ class World:
     """
 
     def __init__(self, countries: list):
+        """Initialize the world with a list of Country objects.
+
+        :param countries: List of Country instances.
+        """
         self.countries = {c.name: c for c in countries}
 
     def get_country(self, name: str) -> Country | None:
+        """Retrieve a country by name.
+
+        :param name: Name of the country.
+        :return: Country object.
+        :raises ValueError: If country is not found.
+        """
         country = self.countries.get(name)
         if country is None:
             raise ValueError(f"Country '{name}' not found.")
         return country
 
     def all_countries(self):
+        """Return a list of all countries in the world.
+
+        :return: List of Country objects.
+        """
         return list(self.countries.values())
 
     def transfer_resources(
         self, sender_name: str, receiver_name: str, resource_list: list[tuple[str, int]]
     ):
+        """Transfer resources from one country to another.
+
+        :param sender_name: Name of the country sending resources.
+        :param receiver_name: Name of the country receiving resources.
+        :param resource_list: List of (resource, amount) tuples.
+        :raises ValueError: If a country is missing or lacks resources.
+        """
         sender = self.get_country(sender_name)
         receiver = self.get_country(receiver_name)
 

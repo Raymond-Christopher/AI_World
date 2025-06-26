@@ -1,3 +1,6 @@
+"""Functions to compute state quality based on the country resources."""
+
+
 def compute_state_quality(country_resources):
     """Calculates the quality score of a state based on its available resources
     and population.
