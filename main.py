@@ -4,10 +4,8 @@ import copy
 from state_quality import compute_state_quality
 from world_model import Country, World
 from transformations import TransformTemplate
-from schedule_evaluation import (
-    compute_undiscounted_reward,
-    compute_discounted_reward,
-)  # pylint: disable=unused-import
+from schedule_evaluation import compute_undiscounted_reward  # pylint: disable=unused-import
+from schedule_evaluation import compute_discounted_reward
 
 
 def main():

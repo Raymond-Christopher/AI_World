@@ -1,6 +1,8 @@
 """Defines the Country and World classes for simulating resource management and
 transfers."""
 
+from typing import List, Tuple
+
 
 class Country:
     """Represents a country with a set of resources and provides methods to
@@ -111,7 +113,7 @@ class World:
             :raises ValueError: If sender or receiver is not found, or if sender lacks resources.
     """
 
-    def __init__(self, countries: list):
+    def __init__(self, countries: List):
         """Initialize the world with a list of Country objects.
 
         :param countries: List of Country instances.
@@ -138,7 +140,7 @@ class World:
         return list(self.countries.values())
 
     def transfer_resources(
-        self, sender_name: str, receiver_name: str, resource_list: list[tuple[str, int]]
+        self, sender_name: str, receiver_name: str, resource_list: List[Tuple[str, int]]
     ):
         """Transfer resources from one country to another.
 
