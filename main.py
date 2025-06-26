@@ -1,3 +1,4 @@
+# pylint: disable=C0412, W0611
 """Main script to test state quality and simulate operations."""
 
 import copy
