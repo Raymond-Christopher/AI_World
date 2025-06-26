@@ -24,7 +24,7 @@ def parse_country_resources(filepath):
     :rtype: dict
     """
     countries = {}
-    with open(filepath, newline="") as csvfile:
+    with open(filepath, newline="", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             country = row["Country"]
@@ -44,7 +44,7 @@ def parse_resource_weights(filepath):
     :rtype: dict
     """
     weights = {}
-    with open(filepath, newline="") as csvfile:
+    with open(filepath, newline="", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             weights[row["Resource"]] = float(row["Weight"])

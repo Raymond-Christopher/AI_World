@@ -1,7 +1,7 @@
 """Functions to compute state quality based on the country resources."""
 
 
-def compute_state_quality(country_resources):
+def compute_state_quality(country_resources: dict, weights: dict) -> float:
     """Calculates the quality score of a state based on its available resources
     and population.
 
@@ -16,20 +16,6 @@ def compute_state_quality(country_resources):
     :return: float The computed state quality score per capita. Returns
         negative infinity if population is zero.
     """
-
-    weights = {
-        "Housing": 3.0,
-        "HousingWaste": -2.0,
-        "Electronics": 4.0,
-        "ElectronicsWaste": -2.0,
-        "MetallicAlloys": 2.0,
-        "MetallicAlloysWaste": -1.5,
-        "Timber": 1.0,
-        "MetallicElements": 1.5,
-        "Food": 3.0,
-        "Water": 2.0,
-        "FoodWaste": -1.5,
-    }
 
     population = country_resources.get("Population", 0)
     if population == 0:

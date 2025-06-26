@@ -4,19 +4,22 @@ quality."""
 from .state_quality import compute_state_quality
 
 
-def compute_undiscounted_reward(country_before, country_after) -> float:
+def compute_undiscounted_reward(country_before, country_after, weights: dict) -> float:
     """Computes the difference in state quality between two country states.
-    :param country_before: A Country object (before schedule)
 
+    :param country_before: A Country object (before schedule)
     :param country_after: A Country object (after schedule)
+    :param weights: Dictionary of resource weights.
     :return: float representing Q_end - Q_start
     """
-    q_start = compute_state_quality(country_before.resources)
-    q_end = compute_state_quality(country_after.resources)
+    q_start = compute_state_quality(country_before.resources, weights)
+    q_end = compute_state_quality(country_after.resources, weights)
     return q_end - q_start
 
 
-def compute_discounted_reward(start_country, end_country, steps: int, gamma: float = 0.95) -> float:
+def compute_discounted_reward(
+    start_country, end_country, steps: int, gamma: float, weights: dict
+) -> float:
     """Calculates the discounted reward between two countries' resource states
     over a given number of steps.
 
@@ -30,6 +33,6 @@ def compute_discounted_reward(start_country, end_country, steps: int, gamma: flo
     :return: The discounted reward as a float.
     """
 
-    q_start = compute_state_quality(start_country.resources)
-    q_end = compute_state_quality(end_country.resources)
+    q_start = compute_state_quality(start_country.resources, weights)
+    q_end = compute_state_quality(end_country.resources, weights)
     return (gamma**steps) * (q_end - q_start)

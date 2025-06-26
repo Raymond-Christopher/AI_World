@@ -12,6 +12,7 @@ from parsers.csv_parser import parse_country_resources, parse_resource_weights
 def main():
     """Run a simulation of state quality and resource transformation between
     countries."""
+
     # atlantis_resources = {
     #     "Population": 100,
     #     "Housing": 20,
@@ -54,7 +55,7 @@ def main():
     # Initial state quality
     print("--- Initial State Quality ---")
     for country in world.all_countries():
-        score = compute_state_quality(country.resources)
+        score = compute_state_quality(country.resources, weights_data)
         print(f"{country.name}: {score:.2f}")
 
     # Transfer
@@ -75,14 +76,16 @@ def main():
     if atlantis.has_resources(scaled_transform.inputs):
         atlantis.apply_transform(scaled_transform.inputs, scaled_transform.outputs)
         print("Transform applied.")
-        reward = compute_discounted_reward(atlantis_before, atlantis, steps=2, gamma=0.95)
+        reward = compute_discounted_reward(
+            atlantis_before, atlantis, steps=2, gamma=0.95, weights=weights_data
+        )
         print(f"Discounted reward for Atlantis: {reward:.2f}")
     else:
         print("Not enough resources for transform.")
 
     print("\n--- After Transform ---")
     for country in world.all_countries():
-        score = compute_state_quality(country.resources)
+        score = compute_state_quality(country.resources, weights_data)
         print(f"{country.name}: {score:.2f}")
 
 
