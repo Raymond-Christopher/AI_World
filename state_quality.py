@@ -1,4 +1,16 @@
 def compute_state_quality(country_resources):
+    """
+    Calculates the quality score of a state based on its available resources and population.
+    The function computes a weighted sum of various resource quantities (such as Housing, Electronics, Food, etc.)
+    and their respective wastes, then normalizes this sum by the population to provide a per-capita quality score.
+    Negative weights are used for waste resources to penalize their presence.
+    :param country_resources: dict
+        A dictionary containing resource names as keys and their corresponding quantities as values.
+        Must include the key "Population" for normalization.
+    :return: float
+        The computed state quality score per capita. Returns negative infinity if population is zero.
+    """
+    
     weights = {
         "Housing": 3.0,
         "HousingWaste": -2.0,
