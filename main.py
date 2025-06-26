@@ -4,10 +4,7 @@ import copy
 from evaluations.state_quality import compute_state_quality
 from models.world_model import Country, World
 from transformations.transformations import TransformTemplate
-from evaluations.schedule_evaluation import (
-    compute_undiscounted_reward,
-)  # pylint: disable=unused-import
-from evaluations.schedule_evaluation import compute_discounted_reward
+from evaluations.schedule_evaluation import (compute_discounted_reward, compute_undiscounted_reward)
 
 
 def main():
@@ -80,7 +77,7 @@ def main():
     for country in world.all_countries():
         score = compute_state_quality(country.resources)
         print(f"{country.name}: {score:.2f}")
-
+    _ =compute_undiscounted_reward
 
 if __name__ == "__main__":
     main()
