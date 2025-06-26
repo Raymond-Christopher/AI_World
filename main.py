@@ -1,14 +1,17 @@
 """Main script to test state quality and simulate operations."""
 
+import copy
 from state_quality import compute_state_quality
 from world_model import Country, World
 from transformations import TransformTemplate
-from schedule_evaluation import compute_undiscounted_reward, compute_discounted_reward
-import copy
+from schedule_evaluation import (
+    compute_undiscounted_reward,
+    compute_discounted_reward,
+)  # pylint: disable=unused-import
 
 
 def main():
-    # Initialize resources
+    """Run a simulation of state quality and resource transformation between countries."""
     atlantis_resources = {
         "Population": 100,
         "Housing": 20,
