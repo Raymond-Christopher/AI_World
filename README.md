@@ -26,6 +26,7 @@ This project implements a multi-method AI agent designed to reason about trade a
 
 ## 🗂 Project Structure
 
+```
 Development_mode/
 ├── main.py # Entry point for the simulation
 ├── README.md
@@ -46,19 +47,20 @@ Development_mode/
 └── data/
 ├── resources.csv # Sample country resources
 └── weights.csv # Resource weight configuration
+```
 
 ---
 
 ## 🛠 Setup & Running
 
-### Prerequisites
+### Pre-requisites
 
 - Python 3.8+
 - No third-party dependencies (standard library only)
 
 ### Running the Simulation
 
-````bash
+```bash
 cd Development_mode
 python3 main.py
 
@@ -68,23 +70,24 @@ Print the initial state quality for each country.
 Perform a resource transfer from one country to another.
 Attempt a resource transformation (e.g., Housing).
 Print the post-transform state and the computed discounted reward.
+```
 
-Testing
+### Testing
 
 To run unit tests:
 
 ```bash
 cd Development_mode
 python3 -m unittest discover tests
-````
+```
 
-Notes
+### Notes
 
 All transformations must follow predefined templates.
 All required resource types and waste resources are tracked.
 The design supports expanding to Part 2 (planning agents and probabilistic success estimation).
 
-Author
+### Author
 
 Christopher Raymond
 CS 5260 - Summer 2025
