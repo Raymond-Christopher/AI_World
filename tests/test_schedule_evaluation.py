@@ -4,18 +4,15 @@ import unittest
 from evaluations import schedule_evaluation
 
 
+# pylint: disable=too-few-public-methods
 class DummyCountry:
-    """A minimal stand-in for Country used in reward evaluation tests.
-
-    This class is purposefully small, providing only the 'resources' attribute
-    needed for state quality calculations.
-    """
+    """A minimal stand-in for Country used in reward evaluation tests."""
 
     def __init__(self, resources):
-        """
-        Initialize a DummyCountry with a dictionary of resources.
+        """Initialize a DummyCountry with a dictionary of resources.
 
-        :param resources: A dictionary mapping resource names to quantities.
+        :param resources: A dictionary mapping resource names to
+            quantities.
         :type resources: dict
         """
         self.resources = resources
@@ -34,8 +31,8 @@ class TestScheduleEvaluation(unittest.TestCase):
         schedule_evaluation.compute_state_quality = self.original_quality_fn
 
     def fake_quality(self, resources, _weights=None):
-        """
-        Mocked deterministic state quality based on Housing and HousingWaste.
+        """Mocked deterministic state quality based on Housing and
+        HousingWaste.
 
         :param resources: Dictionary of resource quantities.
         :type resources: dict
@@ -47,8 +44,7 @@ class TestScheduleEvaluation(unittest.TestCase):
         return resources.get("Housing", 0) * 5 + resources.get("HousingWaste", 0) * -2
 
     def test_compute_undiscounted_reward(self):
-        """
-        Test that the undiscounted reward is computed correctly.
+        """Test that the undiscounted reward is computed correctly.
 
         :return: None
         """
@@ -59,8 +55,7 @@ class TestScheduleEvaluation(unittest.TestCase):
         self.assertAlmostEqual(result, expected, places=2)
 
     def test_compute_discounted_reward(self):
-        """
-        Test that the discounted reward is computed with gamma over steps.
+        """Test that the discounted reward is computed with gamma over steps.
 
         :return: None
         """
