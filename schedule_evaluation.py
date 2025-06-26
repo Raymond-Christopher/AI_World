@@ -1,4 +1,5 @@
 from state_quality import compute_state_quality
+"""Functions to compute undiscounted and discounted rewards based on state quality."""
 
 
 def compute_undiscounted_reward(country_before, country_after) -> float:
