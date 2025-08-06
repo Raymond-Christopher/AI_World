@@ -19,21 +19,21 @@ def plot_schedule_log(json_path, output_path, initial_resources_path):
         resources = set()
         for row in reader:
             resources.update(row.keys())
-        resources.discard("Country")  # Remove country label if present
+        resources.discard("Country")  
 
     # 2. Load schedule log
     with open(json_path, "r") as f:
         data = json.load(f)
 
     # 3. Select schedule to plot
-    schedule = data[4]  # Schedule 5 (0-indexed)
+    schedule = data[4]  
 
     # 4. Collect deltas
     initial_values = {}
     with open(initial_resources_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            if row["Country"] == "Atlantis":  # Change if you want to make this dynamic
+            if row["Country"] == "Atlantis":  
                 for res in resources:
                     initial_values[res] = float(row[res])
                 break
