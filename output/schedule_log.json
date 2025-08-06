@@ -1,0 +1,206 @@
+[
+  {
+    "schedule_num": 1,
+    "final_eu": -1.7050000000000018,
+    "actions": [
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 18.244999999999997,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 1,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 8.27,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 3,
+          "PotentialEnergyUsable": 5.0,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": -1.7050000000000018,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 5,
+          "PotentialEnergyUsable": 10.0,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      }
+    ]
+  },
+  {
+    "schedule_num": 2,
+    "final_eu": 0.29499999999999815,
+    "actions": [
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 18.244999999999997,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 1,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 2)))",
+        "eu": 8.294999999999998,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 4,
+          "PotentialEnergyUsable": 5.0,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFORM Atlantis Lumber x1)",
+        "eu": 0.29499999999999815,
+        "delta": {
+          "Timber": 10,
+          "PotentialEnergyUsable": -1,
+          "AvailableLand": -1
+        }
+      }
+    ]
+  },
+  {
+    "schedule_num": 3,
+    "final_eu": 0.2699999999999996,
+    "actions": [
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 18.244999999999997,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 1,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 8.27,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 3,
+          "PotentialEnergyUsable": 5.0,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFORM Atlantis Lumber x1)",
+        "eu": 0.2699999999999996,
+        "delta": {
+          "Timber": 10,
+          "PotentialEnergyUsable": -1,
+          "AvailableLand": -1
+        }
+      }
+    ]
+  },
+  {
+    "schedule_num": 4,
+    "final_eu": 0.29499999999999815,
+    "actions": [
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 18.244999999999997,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 1,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFORM Atlantis Lumber x1)",
+        "eu": 10.244999999999997,
+        "delta": {
+          "Timber": 10,
+          "PotentialEnergyUsable": -1,
+          "AvailableLand": -1
+        }
+      },
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 2)))",
+        "eu": 0.29499999999999815,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 14,
+          "PotentialEnergyUsable": 4.0,
+          "AvailableLand": 4,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      }
+    ]
+  },
+  {
+    "schedule_num": 5,
+    "final_eu": 0.269999999999996,
+    "actions": [
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 18.244999999999997,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 1,
+          "AvailableLand": 5,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      },
+      {
+        "action": "(TRANSFORM Atlantis Lumber x1)",
+        "eu": 10.244999999999997,
+        "delta": {
+          "Timber": 10,
+          "PotentialEnergyUsable": -1,
+          "AvailableLand": -1
+        }
+      },
+      {
+        "action": "(TRANSFER Carpania Atlantis ((Timber 1)))",
+        "eu": 0.269999999999996,
+        "delta": {
+          "Electronics": 1,
+          "Timber": 13,
+          "PotentialEnergyUsable": 4.0,
+          "AvailableLand": 4,
+          "Food": -5,
+          "MetallicElements": 5,
+          "Water": -10
+        }
+      }
+    ]
+  }
+]

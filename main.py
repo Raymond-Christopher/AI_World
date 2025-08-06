@@ -5,89 +5,107 @@ import copy
 from evaluations.state_quality import compute_state_quality
 from models.world_model import Country, World
 from transformations.transformations import TransformTemplate
-from evaluations.schedule_evaluation import compute_discounted_reward, compute_undiscounted_reward
+from evaluations.schedule_evaluation import (
+    compute_discounted_reward,
+    compute_undiscounted_reward,
+    compute_expected_utility,
+    generate_schedules
+)
 from parsers.csv_parser import parse_country_resources, parse_resource_weights
+from scheduler import country_scheduler
+from visualizations.plot_schedule import plot_schedule_log
+from visualizations.resourcetracking import plot_schedule_log
 
 
 def main():
-    """Run a simulation of state quality and resource transformation between
-    countries."""
+    """Run the country scheduler for a selected country."""
 
-    # atlantis_resources = {
-    #     "Population": 100,
-    #     "Housing": 20,
-    #     "HousingWaste": 3,
-    #     "Electronics": 10,
-    #     "ElectronicsWaste": 1,
-    #     "MetallicAlloys": 15,
-    #     "MetallicAlloysWaste": 2,
-    #     "Timber": 40,
-    #     "MetallicElements": 30,
-    #     "Food": 60,
-    #     "Water": 80,
-    #     "FoodWaste": 4,
-    # }
+    # ------------------------------------------------------
+    # Old simulation and transform schedule logic (commented)
+    # ------------------------------------------------------
+    # countries_data = parse_country_resources("data/resources.csv")
+    # weights_data = parse_resource_weights("data/weights.csv")
+    # atlantis = Country("Atlantis", countries_data["Atlantis"])
+    # carpania = Country("Carpania", countries_data["Carpania"])
+    # world = World([atlantis, carpania])
+    #
+    # print("--- Initial State Quality ---")
+    # for country in world.all_countries():
+    #     score = compute_state_quality(country.resources, weights_data)
+    #     print(f"{country.name}: {score:.2f}")
+    #
+    # transfer_items = [("Timber", 10), ("Food", 5), ("Water", 15)]
+    # world.transfer_resources("Carpania", "Atlantis", transfer_items)
+    #
+    # print("\n--- Attempting Best Transform Schedule ---")
+    # base_transforms = [
+    #     TransformTemplate(
+    #         name="Housing",
+    #         inputs={"Population": 5, "MetallicElements": 1, "Timber": 5, "MetallicAlloys": 1},
+    #         outputs={"Housing": 4, "HousingWaste": 1, "Population": 5},
+    #     ),
+    # ]
+    #
+    # all_schedules = generate_schedules(
+    #     transform_templates=base_transforms,
+    #     country_name="Atlantis",
+    #     max_length=2,
+    #     scales=[1, 3, 5]
+    # )
+    #
+    # best_schedule = None
+    # best_utility = float('-inf')
+    #
+    # for schedule in all_schedules:
+    #     utility = compute_expected_utility(
+    #         schedule=schedule,
+    #         world=world,
+    #         country_name="Atlantis",
+    #         weights=weights_data,
+    #         gamma=0.95,
+    #     )
+    #     if utility > best_utility:
+    #         best_utility = utility
+    #         best_schedule = schedule
+    #
+    # if best_schedule:
+    #     print(f"Best expected utility: {best_utility:.4f}")
+    #     print("Best schedule:")
+    #     for t, _ in best_schedule:
+    #         print(f" - {t.name} x{t.inputs['Population'] // 5}") 
+    #     for transform, _ in best_schedule:
+    #         if atlantis.has_resources(transform.inputs):
+    #             atlantis.apply_transform(transform.inputs, transform.outputs)
+    #         else:
+    #             print("Not enough resources to apply one of the transforms.")
+    # else:
+    #     print("No valid schedule found that could improve expected utility.")
+    #
+    # print("\n--- After Best Schedule Applied ---")
+    # for country in world.all_countries():
+    #     score = compute_state_quality(country.resources, weights_data)
+    #     print(f"{country.name}: {score:.2f}")
 
-    # carpania_resources = {
-    #     "Population": 80,
-    #     "Housing": 15,
-    #     "HousingWaste": 2,
-    #     "Electronics": 8,
-    #     "ElectronicsWaste": 1,
-    #     "MetallicAlloys": 3,
-    #     "MetallicAlloysWaste": 1,
-    #     "Timber": 20,
-    #     "MetallicElements": 15,
-    #     "Food": 40,
-    #     "Water": 60,
-    #     "FoodWaste": 3,
-    # }
-
-    countries_data = parse_country_resources("data/resources.csv")
-    weights_data = parse_resource_weights("data/weights.csv")
-    atlantis = Country("Atlantis", countries_data["Atlantis"])
-    carpania = Country("Carpania", countries_data["Carpania"])
-
-    # atlantis = Country("Atlantis", atlantis_resources)
-    # carpania = Country("Carpania", carpania_resources)
-    world = World([atlantis, carpania])
-
-    # Initial state quality
-    print("--- Initial State Quality ---")
-    for country in world.all_countries():
-        score = compute_state_quality(country.resources, weights_data)
-        print(f"{country.name}: {score:.2f}")
-
-    # Transfer
-    transfer_items = [("Timber", 10), ("Food", 5), ("Water", 15)]
-    world.transfer_resources("Carpania", "Atlantis", transfer_items)
-
-    atlantis_before = copy.deepcopy(atlantis)
-
-    # Transform
-    print("\n--- Attempting Housing Transform ---")
-    housing_transform = TransformTemplate(
-        name="Housing",
-        inputs={"Population": 5, "MetallicElements": 1, "Timber": 5, "MetallicAlloys": 3},
-        outputs={"Housing": 1, "HousingWaste": 1, "Population": 5},
+    # -----------------------------------------------
+    # ✅ Final scheduler: Depth-bounded, utility-driven
+    # -----------------------------------------------
+    print("\n--- Running Full Anytime Scheduler ---")
+    country_scheduler(
+        your_country_name="Atlantis",
+        resources_filename="data/weights.csv",
+        initial_state_filename="data/resources.csv",
+        output_schedule_filename="output/schedule_atlantis.txt",
+        num_output_schedules=5,
+        depth_bound=3,
+        frontier_max_size=100,
+        track_resource_deltas=True
     )
+    print("Scheduler complete. Results written to output/schedule_atlantis.txt")
 
-    scaled_transform = housing_transform.scale(3)
-    if atlantis.has_resources(scaled_transform.inputs):
-        atlantis.apply_transform(scaled_transform.inputs, scaled_transform.outputs)
-        print("Transform applied.")
-        reward = compute_discounted_reward(
-            atlantis_before, atlantis, steps=2, gamma=0.95, weights=weights_data
-        )
-        print(f"Discounted reward for Atlantis: {reward:.2f}")
-    else:
-        print("Not enough resources for transform.")
-
-    print("\n--- After Transform ---")
-    for country in world.all_countries():
-        score = compute_state_quality(country.resources, weights_data)
-        print(f"{country.name}: {score:.2f}")
-
-
+    plot_schedule_log(
+    json_path="output/schedule_log.json",
+    output_path="output/schedule_plot.png",
+    initial_resources_path="data/resources.csv"
+    )   
 if __name__ == "__main__":
     main()

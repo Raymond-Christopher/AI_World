@@ -14,20 +14,9 @@ class Country:
 
     Methods:
         get_resource(resource: str) -> int
-            Returns the quantity of a specific resource.
-            :param resource: The name of the resource to query.
-            :return: The quantity of the specified resource, or 0 if not present.
-
         has_resources(required: dict) -> bool
-            Checks if the country has at least the required amounts of each resource.
-            :param required: A dictionary of required resources and their amounts.
-            :return: True if all required resources are available in sufficient quantity, False otherwise.
-
         apply_transform(inputs: dict, outputs: dict)
-            Consumes input resources and produces output resources, updating the country's resources.
-            :param inputs: A dictionary of resources to consume and their amounts.
-            :param outputs: A dictionary of resources to produce and their amounts.
-            :raises ValueError: If the country lacks the required input resources.
+
     """
 
     def __init__(self, name: str, resources: dict):
@@ -93,24 +82,9 @@ class World:
     :raises ValueError: If a requested country is not found or if a resource transfer is invalid.
     :methods:
         - get_country(name: str) -> Country | None:
-            Retrieves a country by name.
-            :param name: The name of the country to retrieve.
-            :type name: str
-            :return: The Country object if found.
-            :rtype: Country
         - all_countries() -> list:
-            Returns a list of all Country objects in the world.
-            :return: List of Country objects.
-            :rtype: list
         - transfer_resources(sender_name: str, receiver_name: str, resource_list: list[tuple[str, int]]):
-            Transfers resources from one country to another.
-            :param sender_name: Name of the sending country.
-            :type sender_name: str
-            :param receiver_name: Name of the receiving country.
-            :type receiver_name: str
-            :param resource_list: List of (resource, amount) tuples to transfer.
-            :type resource_list: list[tuple[str, int]]
-            :raises ValueError: If sender or receiver is not found, or if sender lacks resources.
+
     """
 
     def __init__(self, countries: List):
@@ -120,7 +94,7 @@ class World:
         """
         self.countries = {c.name: c for c in countries}
 
-    def get_country(self, name: str) -> Country | None:
+    def get_country(self, name: str) -> Country:
         """Retrieve a country by name.
 
         :param name: Name of the country.
@@ -165,4 +139,11 @@ class World:
         for resource, amount in resource_list:
             sender.resources[resource] -= amount
             receiver.resources[resource] = receiver.resources.get(resource, 0) + amount
-            print(f"{sender.name} transferred {amount} {resource} to {receiver.name}.")
+            # print(f"{sender.name} transferred {amount} {resource} to {receiver.name}.")
+    
+    def clone(self):
+        """Return a deep copy of the world state (used for search branching)."""
+        cloned_countries = [
+            Country(c.name, c.resources.copy()) for c in self.all_countries()
+        ]
+        return World(cloned_countries)

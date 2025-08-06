@@ -1,0 +1,35 @@
+Schedule 1 (Final EU: -1.71):
+[
+  Step 1: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 18.24
+  Step 2: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 8.27
+  Step 3: (TRANSFER Carpania Atlantis ((Timber 1))) EU: -1.71
+]
+
+Schedule 2 (Final EU: 0.29):
+[
+  Step 1: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 18.24
+  Step 2: (TRANSFER Carpania Atlantis ((Timber 2))) EU: 8.29
+  Step 3: (TRANSFORM Atlantis Lumber x1) EU: 0.29
+]
+
+Schedule 3 (Final EU: 0.27):
+[
+  Step 1: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 18.24
+  Step 2: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 8.27
+  Step 3: (TRANSFORM Atlantis Lumber x1) EU: 0.27
+]
+
+Schedule 4 (Final EU: 0.29):
+[
+  Step 1: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 18.24
+  Step 2: (TRANSFORM Atlantis Lumber x1) EU: 10.24
+  Step 3: (TRANSFER Carpania Atlantis ((Timber 2))) EU: 0.29
+]
+
+Schedule 5 (Final EU: 0.27):
+[
+  Step 1: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 18.24
+  Step 2: (TRANSFORM Atlantis Lumber x1) EU: 10.24
+  Step 3: (TRANSFER Carpania Atlantis ((Timber 1))) EU: 0.27
+]
+
